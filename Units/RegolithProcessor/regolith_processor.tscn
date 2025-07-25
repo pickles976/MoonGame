@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv00kptv57mnj"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0ackj7868sti" path="res://Units/RegolithProcessor/model.res" id="1_jr1fh"]
+[ext_resource type="Script" uid="uid://clxrqerxy771q" path="res://Units/RegolithProcessor/regolith_processor.gd" id="1_khy2v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w48qg"]
+size = Vector3(0.559814, 0.768555, 0.714294)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_khy2v"]
+size = Vector3(1, 0.443542, 1)
+
+[node name="RegolithProcessor" type="Node3D"]
+script = ExtResource("1_khy2v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00422776, 0.379872, 0.00679207)
+mesh = ExtResource("1_jr1fh")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0186768, 0.42627, 0.0177307)
+visible = false
+shape = SubResource("BoxShape3D_w48qg")
+debug_fill = false
+
+[node name="DropOffArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DropOffArea"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.00579554, 0.394226, 0.0031662)
+shape = SubResource("BoxShape3D_khy2v")
+
+[connection signal="area_entered" from="DropOffArea" to="." method="_on_drop_off_area_area_entered"]
+[connection signal="area_exited" from="DropOffArea" to="." method="_on_drop_off_area_area_exited"]

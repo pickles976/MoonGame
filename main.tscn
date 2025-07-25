@@ -1,18 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://jco6j8ak1k7n"]
+[gd_scene load_steps=20 format=3 uid="uid://jco6j8ak1k7n"]
 
 [ext_resource type="Script" uid="uid://ddkk1tfk437gy" path="res://camera_controller.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b07yp60f8v1up" path="res://ground.gd" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://fur548jesvn2" path="res://Materials/lunar_rock_1/albedo.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://dbddmtr4rk0y8" path="res://raycaster.gd" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://bxiy5hq2cga72" path="res://LandingCraft/landing_craft.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bxiy5hq2cga72" path="res://Units/LandingCraft/landing_craft.tscn" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://b5qxahho6vd5k" path="res://Materials/lunar_rock_1/ao.png" id="4_ycdy4"]
-[ext_resource type="PackedScene" uid="uid://ci5eik1g0psvp" path="res://Rover/rover.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ci5eik1g0psvp" path="res://Units/Rover/rover.tscn" id="5_lquwl"]
 [ext_resource type="Texture2D" uid="uid://y6eas4gqmsc8" path="res://Materials/lunar_rock_1/height.png" id="5_w48qg"]
-[ext_resource type="PackedScene" uid="uid://dy5s0tmn4efpj" path="res://LandingCraft/lander_menu.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dy5s0tmn4efpj" path="res://Units/LandingCraft/lander_menu.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dacg4b4ucssx5" path="res://Materials/lunar_rock_1/normal.png" id="6_vivmo"]
-[ext_resource type="PackedScene" uid="uid://brhvqqd4n5sdn" path="res://Rover/rover_menu.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://brhvqqd4n5sdn" path="res://Units/Rover/rover_menu.tscn" id="7_272bh"]
 [ext_resource type="Script" uid="uid://dlvh5jymd3y2h" path="res://spawner_system.gd" id="8_5vw27"]
-[ext_resource type="Script" uid="uid://cel6ar8kdj2wl" path="res://resource_ui.gd" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://bv00kptv57mnj" path="res://Units/RegolithProcessor/regolith_processor.tscn" id="10_w48qg"]
+[ext_resource type="PackedScene" uid="uid://608jwilok83m" path="res://resource_ui.tscn" id="13_ycdy4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
 orientation = 1
@@ -95,6 +96,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.50918, -3)
 [node name="Rover" parent="." instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367825, 0)
 
+[node name="RegolithProcessor" parent="." instance=ExtResource("10_w48qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
 [node name="SpawnerSystem" type="Node" parent="." node_paths=PackedStringArray("rover_menu")]
 unique_name_in_owner = true
 script = ExtResource("8_5vw27")
@@ -111,82 +115,7 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="ResourceUI" type="MarginContainer" parent="CanvasUI"]
-anchors_preset = -1
-anchor_left = 0.028
-anchor_top = 0.055
-anchor_right = 0.977
-anchor_bottom = 0.951
-offset_left = -19.256
-offset_top = -23.64
-offset_right = 14.496
-offset_bottom = -578.248
-scale = Vector2(1, 1.00707)
-mouse_filter = 2
-script = ExtResource("13_ycdy4")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasUI/ResourceUI"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="KilowattLabel" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "kW:"
-fit_content = true
-autowrap_mode = 0
-
-[node name="KilowattsConsumed" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-text = "0.0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Slash" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-text = "/"
-fit_content = true
-autowrap_mode = 0
-
-[node name="KilowattsProduced" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-text = "0.0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="RegolithLabel" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_stretch_ratio = 0.25
-mouse_filter = 2
-text = "Regolith:"
-fit_content = true
-autowrap_mode = 0
-
-[node name="RegolithCounter" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "0.0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="TonsLabel" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-text = "Tons"
-fit_content = true
+[node name="ResourceUI" parent="CanvasUI" instance=ExtResource("13_ycdy4")]
 
 [connection signal="input_event" from="Ground/StaticBody3D" to="Ground" method="_on_input_event"]
 [connection signal="mouse_exited" from="Ground/StaticBody3D" to="Ground" method="_on_mouse_exit"]

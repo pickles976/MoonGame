@@ -13,6 +13,7 @@ extends Node3D
 var behavior_queue: Array = []
 
 # Mining Stuff
+var max_regolith_capacity: float = 0.5
 var regolith : float = 0.0
 @export var mining_speed: float = 0.05
 

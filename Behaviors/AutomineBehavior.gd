@@ -9,7 +9,14 @@ func _init(agent: Node3D) -> void:
 			
 func apply(delta: float) -> void:
 	
-	if Resources.get_regolith_at_position(agent.position) > 0.0:
+	if agent.regolith > agent.max_regolith_capacity:
+		# Go to first RegolithProcessor we find to drop off resources
+		# TODO: pick the closest one
+		for key in Pathfinding.obstacle_dict:
+			var object = Pathfinding.obstacle_dict[key]
+			if object is RegolithProcessor:
+				agent.prioritize_behavior(SeekBehavior.new(agent, object.position + Vector3.RIGHT))
+	elif Resources.get_regolith_at_position(agent.position) > 0.0:
 		Resources.consume_power(agent.power_consumption)
 		agent.regolith += Resources.mine_regolith(agent.position, agent.mining_speed * Resources.efficiency * delta)
 	else:

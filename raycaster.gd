@@ -47,6 +47,9 @@ func _physics_process(delta):
 	
 func _handle_hover(node: Node3D, result: Dictionary):
 	
+	if SelectionHandler.currently_selected == node:
+		return
+	
 	if node != last_hovered: # New item hovered over
 		if last_hovered:
 			last_hovered.on_mouse_exit(result.position)

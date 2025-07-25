@@ -1,3 +1,6 @@
+Started July, 23rd
+Try to finish by August 23rd
+
 - [x] raycasting
 - [x] grid highlighting
 - [x] make unique
@@ -38,14 +41,22 @@
 	- [x] dispatch signals to show consumption rates
 	- [x] if power is over-consumed, throttle efficiency rates
 
-- [ ] add resource-processor
-	- [ ] go to resource processor
-- [ ] add solar panels	
-
+- [x] add resource-processor
+	- [x] rovers go to resource processor when full
+- [x] rover power requirements
+- [x] regolith processor efficiency
 - [ ] regolith to element conversion rates (O2 45%, Si 21%, Metals 25%)
+- [ ] add Metals, Metalloids, and Organics generated from regolith processor
+- [ ] add efficency to UI
+
+- [ ] add solar panels	
 - [ ] solar panel energy production
-- [ ] rover power requirements
-- [ ] regolith processor efficiency
+
+- [ ] fix bug where hovering over the first rover highlights all of them
+
+- [ ] add object construction from rover
+	- [ ] solar panels
+	- [ ] regolith processor
 
 - [ ] take a break and watch the tutemic video
 

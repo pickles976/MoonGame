@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://brhvqqd4n5sdn"]
 
-[ext_resource type="Script" uid="uid://e3y0ya5g7i4m" path="res://Rover/rover_menu.gd" id="1_2wwiq"]
+[ext_resource type="Script" uid="uid://e3y0ya5g7i4m" path="res://Units/Rover/rover_menu.gd" id="1_2wwiq"]
 
 [node name="LanderMenu" type="MarginContainer"]
 anchors_preset = 8

@@ -3,20 +3,19 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cwj81wxqnajpr"
-path="res://.godot/imported/rover.blend-92ececea037222be321fb5b703a94398.scn"
+uid="uid://ciddmmtqrpren"
+valid=false
 
 [deps]
 
-source_file="res://Rover/rover.blend"
-dest_files=["res://.godot/imported/rover.blend-92ececea037222be321fb5b703a94398.scn"]
+source_file="res://Units/LandingCraft/lander.blend"
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.12
+nodes/root_scale=0.4
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
@@ -34,13 +33,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"rover_Cube": {
+"lander_Cube": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Rover/model.res"
+"save_to_file/path": "res://LandingCraft/lander_model.res"
 }
 }
 }

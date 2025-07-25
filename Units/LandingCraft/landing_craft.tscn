@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxiy5hq2cga72"]
 
-[ext_resource type="Script" uid="uid://lr1l4cion3xe" path="res://LandingCraft/landing_craft.gd" id="1_cewp5"]
-[ext_resource type="ArrayMesh" uid="uid://bl1v46o2p74l4" path="res://LandingCraft/model.res" id="2_npwdk"]
+[ext_resource type="Script" uid="uid://lr1l4cion3xe" path="res://Units/LandingCraft/landing_craft.gd" id="1_cewp5"]
+[ext_resource type="ArrayMesh" uid="uid://bl1v46o2p74l4" path="res://Units/LandingCraft/model.res" id="2_npwdk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
 

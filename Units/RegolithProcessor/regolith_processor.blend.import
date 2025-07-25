@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ciddmmtqrpren"
-path="res://.godot/imported/lander.blend-6486d072688a35e8262012ce28b37c88.scn"
+uid="uid://c50d7onwvr5go"
+path="res://.godot/imported/regolith_processor.blend-8d30370efb1ef34eefab57f985db693f.scn"
 
 [deps]
 
-source_file="res://LandingCraft/lander.blend"
-dest_files=["res://.godot/imported/lander.blend-6486d072688a35e8262012ce28b37c88.scn"]
+source_file="res://Units/RegolithProcessor/regolith_processor.blend"
+dest_files=["res://.godot/imported/regolith_processor.blend-8d30370efb1ef34eefab57f985db693f.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.4
+nodes/root_scale=0.25
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
@@ -34,13 +34,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"lander_Cube": {
+"regolith_processor_Cylinder_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://LandingCraft/lander_model.res"
+"save_to_file/path": "res://Units/RegolithProcessor/model.res"
 }
 }
 }

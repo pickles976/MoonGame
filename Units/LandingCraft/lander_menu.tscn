@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dy5s0tmn4efpj"]
 
-[ext_resource type="Script" uid="uid://desb6p56dm0ok" path="res://LandingCraft/lander_menu.gd" id="1_64awn"]
+[ext_resource type="Script" uid="uid://desb6p56dm0ok" path="res://Units/LandingCraft/lander_menu.gd" id="1_64awn"]
 
 [node name="LanderMenu" type="MarginContainer"]
 anchors_preset = -1

@@ -48,3 +48,7 @@ func mine_regolith(position: Vector3, rate: float) -> float:
 	regolith_map[position] -= regolith_mined_this_tick
 	total_mined_regolith += regolith_mined_this_tick
 	return regolith_mined_this_tick
+	
+func consume_regolith(amount: float):
+	total_mined_regolith -= amount
+	
