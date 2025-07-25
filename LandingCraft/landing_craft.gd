@@ -10,8 +10,14 @@ extends Node3D
 @onready var spawn_point: Vector3 = self.position + Vector3.RIGHT
 @onready var waypoint: Vector3 = spawn_point
 
+@export var power_production: float = 10.0
+@export var power_consumption: float = 0.0
+
 func _ready():
 	Pathfinding.add_obstacle(self)
+	
+func _process(delta: float) -> void:
+	Resources.produce_power(power_production)
 	
 func _exit_tree():
 	Pathfinding.remove_obstacle(self)

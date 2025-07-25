@@ -18,7 +18,8 @@ func apply(delta: float) -> void:
 	var waypoint = path[0];
 	waypoint.y = agent.position.y
 	if agent.position.distance_to(waypoint) > 0.01:
-		agent.position += agent.position.direction_to(waypoint).normalized() * agent.speed
+		Resources.consume_power(agent.power_consumption)
+		agent.position += agent.position.direction_to(waypoint).normalized() * agent.speed * Resources.efficiency
 	else:
 		path.pop_front()
 		

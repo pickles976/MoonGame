@@ -23,7 +23,7 @@
 - [x] UI interaction
 	- [x] spawn new rover
 	- [x] move rover to waypoint
-- [ ] add resources and resource UI
+- [x] add resources and resource UI
 	- [x] initialize resource grid (tons of regolith per square)
 - [x] add mining behavior for rovers (wander until grid with regolith is found, then mine)
 - [x] behaviors
@@ -32,12 +32,11 @@
 	- [x] mine
 - [x] show total amount of mined regolith in tons on UI
 
-- [ ] show kW
-	- [ ] lander should produce 10kW
-	- [ ] rover should consume 5kW when active
-	- [ ] dispatch signals to show consumption rates
-	- [ ] if power is over-consumed, throttle efficiency rates
-		
+- [x] show kW
+	- [x] lander should produce 10kW
+	- [x] rover should consume 5kW when active
+	- [x] dispatch signals to show consumption rates
+	- [x] if power is over-consumed, throttle efficiency rates
 
 - [ ] add resource-processor
 	- [ ] go to resource processor
@@ -52,3 +51,5 @@
 
 - [ ] show amount of regolith inside rover
 - [ ] dust particles when mining and driving
+- [ ] create conduit paths between solar panels and resource extractors
+- [ ] create a unit cap. Only rovers can increase unit cap

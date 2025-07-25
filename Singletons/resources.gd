@@ -9,8 +9,24 @@ var regolith_map: Dictionary
 
 var total_mined_regolith: float = 0.0
 
+var power_produced: float = 0.0
+var power_consumed: float = 0.0
+var efficiency: float = 1.0
+
 func _ready():
+	set_process_priority(99999) 
 	_init_regolith_map()
+	
+func _process(delta: float) -> void:
+	efficiency = min(1.0, power_produced / power_consumed)
+	power_produced = 0.0
+	power_consumed = 0.0
+	
+func produce_power(value: float):
+	power_produced += value
+	
+func consume_power(value: float):
+	power_consumed += value
 
 func _init_regolith_map():
 	for i in range(-WIDTH, WIDTH):

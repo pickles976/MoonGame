@@ -16,8 +16,14 @@ var behavior_queue: Array = []
 var regolith : float = 0.0
 @export var mining_speed: float = 0.05
 
+# power stuff
+@export var power_production: float = 0.0
+@export var power_consumption: float = 5.0
+
 			
 func _process(delta: float) -> void:
+	Resources.produce_power(power_production)
+	
 	if behavior_queue.size() == 0:
 		return
 		
@@ -25,6 +31,8 @@ func _process(delta: float) -> void:
 		behavior_queue.pop_front()
 	else:
 		behavior_queue.front().apply(delta)
+		
+	
 
 func on_mouse_over(pos):
 	Outliner.add_outline(mesh)
