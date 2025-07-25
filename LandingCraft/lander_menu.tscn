@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://desb6p56dm0ok" path="res://LandingCraft/lander_menu.gd" id="1_64awn"]
 
 [node name="LanderMenu" type="MarginContainer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = 259.0
-offset_right = 575.0
-offset_bottom = 325.0
+anchors_preset = -1
+anchor_left = 0.022
+anchor_top = 0.061
+anchor_right = 0.969
+anchor_bottom = 0.948
+offset_left = -2.344
+offset_top = 506.472
+offset_right = 3.71191
+offset_bottom = 3.69592
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_64awn")

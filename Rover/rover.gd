@@ -14,7 +14,7 @@ var behavior_queue: Array = []
 
 # Mining Stuff
 var regolith : float = 0.0
-var mining_speed: float = 0.3
+@export var mining_speed: float = 0.05
 
 			
 func _process(delta: float) -> void:

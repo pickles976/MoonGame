@@ -10,7 +10,7 @@ func _init(agent: Node3D) -> void:
 func apply(delta: float) -> void:
 	
 	if Resources.get_regolith_at_position(agent.position) > 0.0:
-		agent.regolith += Resources.mine(agent.position, agent.mining_speed * delta)
+		agent.regolith += Resources.mine_regolith(agent.position, agent.mining_speed * delta)
 		print(agent.regolith)
 	else:
 		# TODO: complicated resource search behavior

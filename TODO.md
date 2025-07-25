@@ -30,7 +30,7 @@
 	- [x] look for grid
 	- [x] move to grid
 	- [x] mine
-- [ ] show total amount of mined regolith in tons on UI
+- [x] show total amount of mined regolith in tons on UI
 
 - [ ] show kW
 	- [ ] lander should produce 10kW
@@ -49,3 +49,6 @@
 - [ ] regolith processor efficiency
 
 - [ ] take a break and watch the tutemic video
+
+- [ ] show amount of regolith inside rover
+- [ ] dust particles when mining and driving

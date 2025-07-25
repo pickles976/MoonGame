@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://jco6j8ak1k7n"]
+[gd_scene load_steps=19 format=3 uid="uid://jco6j8ak1k7n"]
 
 [ext_resource type="Script" uid="uid://ddkk1tfk437gy" path="res://camera_controller.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b07yp60f8v1up" path="res://ground.gd" id="2_1bvp3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dacg4b4ucssx5" path="res://Materials/lunar_rock_1/normal.png" id="6_vivmo"]
 [ext_resource type="PackedScene" uid="uid://brhvqqd4n5sdn" path="res://Rover/rover_menu.tscn" id="7_272bh"]
 [ext_resource type="Script" uid="uid://dlvh5jymd3y2h" path="res://spawner_system.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://cel6ar8kdj2wl" path="res://resource_ui.gd" id="13_ycdy4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
 orientation = 1
@@ -109,6 +110,83 @@ visible = false
 [node name="RoverMenu" parent="CanvasUI" instance=ExtResource("7_272bh")]
 unique_name_in_owner = true
 visible = false
+
+[node name="ResourceUI" type="MarginContainer" parent="CanvasUI"]
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.055
+anchor_right = 0.977
+anchor_bottom = 0.951
+offset_left = -19.256
+offset_top = -23.64
+offset_right = 14.496
+offset_bottom = -578.248
+scale = Vector2(1, 1.00707)
+mouse_filter = 2
+script = ExtResource("13_ycdy4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasUI/ResourceUI"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="KilowattLabel" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "kW:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="KilowattsConsumed" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+text = "0.0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Slash" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+text = "/"
+fit_content = true
+autowrap_mode = 0
+
+[node name="KilowattsProduced" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+text = "0.0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RegolithLabel" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.25
+mouse_filter = 2
+text = "Regolith:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="RegolithCounter" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "0.0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TonsLabel" type="RichTextLabel" parent="CanvasUI/ResourceUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+text = "Tons"
+fit_content = true
 
 [connection signal="input_event" from="Ground/StaticBody3D" to="Ground" method="_on_input_event"]
 [connection signal="mouse_exited" from="Ground/StaticBody3D" to="Ground" method="_on_mouse_exit"]

@@ -7,6 +7,8 @@ var WIDTH: int = 100
 # Initialize a map with regolith
 var regolith_map: Dictionary
 
+var total_mined_regolith: float = 0.0
+
 func _ready():
 	_init_regolith_map()
 
@@ -21,12 +23,12 @@ func get_regolith_at_position(position: Vector3) -> float:
 		return regolith_map[position]
 	return 0.0
 	
-func mine(position: Vector3, rate: float) -> float:
+func mine_regolith(position: Vector3, rate: float) -> float:
 	position = Pathfinding.snap(position)
 	if not regolith_map.has(position):
 		return 0.0
 		
 	var regolith_mined_this_tick = min(rate, regolith_map[position])
 	regolith_map[position] -= regolith_mined_this_tick
-	
+	total_mined_regolith += regolith_mined_this_tick
 	return regolith_mined_this_tick
