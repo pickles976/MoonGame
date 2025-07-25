@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://jco6j8ak1k7n"]
+
+[ext_resource type="Script" uid="uid://ddkk1tfk437gy" path="res://camera_controller.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://b07yp60f8v1up" path="res://ground.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://dbddmtr4rk0y8" path="res://raycaster.gd" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bxiy5hq2cga72" path="res://LandingCraft/landing_craft.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ci5eik1g0psvp" path="res://Rover/rover.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dy5s0tmn4efpj" path="res://LandingCraft/lander_menu.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://brhvqqd4n5sdn" path="res://Rover/rover_menu.tscn" id="7_272bh"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
+size = Vector3(2.00232, 0.605225, 2.01666)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7mycd"]
+center_offset = Vector3(0, 0.1, 0)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.501961)
+
+[node name="Main" type="Node3D"]
+
+[node name="CameraContainer" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1.3805, 1.15273, 2.05274)
+script = ExtResource("1_ig7tw")
+camera_speed = 10.0
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="CameraContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 4.90386, 0)
+projection = 1
+current = true
+size = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.540901, 0.841086, 0, -0.841086, 0.540901, 0, 13.3783, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.734086, -0.281708, 0.617866, -0.587303, 0.193357, 0.785932, -0.340872, -0.939816, -0.0235073, 12.686, 22.2179, 2.40534)
+light_energy = 0.2
+
+[node name="Ground" type="Node3D" parent="."]
+script = ExtResource("2_1bvp3")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("QuadMesh_lquwl")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0115356, -0.299927, -0.0160217)
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="HighlightSquare" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("QuadMesh_7mycd")
+surface_material_override/0 = SubResource("StandardMaterial3D_272bh")
+
+[node name="Raycaster" type="RayCast3D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("4_1bvp3")
+camera = NodePath("../CameraContainer/Camera3D")
+
+[node name="LandingCraft" parent="." instance=ExtResource("4_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.50918, -3)
+
+[node name="Rover" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367825, 0)
+
+[node name="CanvasUI" type="CanvasLayer" parent="."]
+
+[node name="LanderMenu" parent="CanvasUI" instance=ExtResource("6_7mycd")]
+unique_name_in_owner = true
+visible = false
+
+[node name="RoverMenu" parent="CanvasUI" instance=ExtResource("7_272bh")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="input_event" from="Ground/StaticBody3D" to="Ground" method="_on_input_event"]
+[connection signal="mouse_exited" from="Ground/StaticBody3D" to="Ground" method="_on_mouse_exit"]
