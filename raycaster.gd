@@ -5,9 +5,17 @@ extends RayCast3D
 const RAY_LENGTH = 1000
 
 var last_hovered: Node
+var last_event: InputEvent = null
+
+func _unhandled_input(event: InputEvent) -> void:
+	last_event = event
 
 # TODO: refactor this
 func _physics_process(delta):
+	
+	if last_event == null:
+		return
+	
 	var space_state = get_world_3d().direct_space_state
 	var mousepos = get_viewport().get_mouse_position()
 
@@ -19,21 +27,23 @@ func _physics_process(delta):
 	var result = space_state.intersect_ray(query)
 	
 	# Nothing intersected
-	if result.size() == 0:
+	if result.size() == 0 or last_event == null:
 		if last_hovered: last_hovered.on_mouse_exit(Vector3(0,0,0))
+		last_event = null
 		return
 		
 	# Get node
 	var parent = result.collider.get_parent()
 		
-	if Input.is_action_just_pressed("RightClick"):
+	if last_event.is_action("RightClick"):
 		SelectionHandler.handle_right_click(result)
-	elif Input.is_action_just_pressed("LeftClick"):
+	elif last_event.is_action("LeftClick"):
 		match parent.is_selectable:
 			false: SelectionHandler.deselect()
 			true: SelectionHandler.set_selected(parent)
 	else:
 		_handle_hover(parent, result)
+	last_event = null
 	
 func _handle_hover(node: Node3D, result: Dictionary):
 	

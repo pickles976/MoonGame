@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://brhvqqd4n5sdn"]
+[gd_scene load_steps=2 format=3 uid="uid://brhvqqd4n5sdn"]
+
+[ext_resource type="Script" uid="uid://e3y0ya5g7i4m" path="res://Rover/rover_menu.gd" id="1_2wwiq"]
 
 [node name="LanderMenu" type="MarginContainer"]
 anchors_preset = 8
@@ -12,17 +14,24 @@ offset_right = 575.0
 offset_bottom = 325.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2wwiq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="MineButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Build"
+text = "Auto-Mine Regolith"
 
-[node name="Fart" type="Button" parent="HBoxContainer"]
+[node name="BuildSolarButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Mine"
+text = "Build Solar Array"
+
+[node name="BuildRefineryButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Build Refinery"

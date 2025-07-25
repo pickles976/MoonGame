@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci5eik1g0psvp"]
+[gd_scene load_steps=4 format=3 uid="uid://ci5eik1g0psvp"]
 
 [ext_resource type="Script" uid="uid://cwog70jjr1oo0" path="res://Rover/rover.gd" id="1_qttos"]
 [ext_resource type="ArrayMesh" uid="uid://ckgm8tfxiqyp6" path="res://Rover/model.res" id="2_wv8fb"]
-[ext_resource type="PackedScene" uid="uid://cjhguhd43b728" path="res://Components/movement_component.tscn" id="4_5vwos"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_il8ej"]
 
@@ -14,10 +13,11 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("2_wv8fb")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("2_wv8fb")
+
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_il8ej")
-
-[node name="MovementComponent" parent="." instance=ExtResource("4_5vwos")]
-unique_name_in_owner = true

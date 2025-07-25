@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Outliner="*res://outliner.gd"
-SelectionHandler="*res://selection_handler.gd"
-Pathfinding="*res://pathfinding.gd"
+Outliner="*res://Singletons/outliner.gd"
+SelectionHandler="*res://Singletons/selection_handler.gd"
+Pathfinding="*res://Singletons/pathfinding.gd"
+Resources="*res://Singletons/resources.gd"
 
 [display]
 

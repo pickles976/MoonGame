@@ -1,3 +1,4 @@
+class_name Rover
 extends Node3D
 
 @export var is_highlightable: bool = true
@@ -5,17 +6,25 @@ extends Node3D
 
 @onready var menu : Container = %RoverMenu
 @onready var mesh : MeshInstance3D = %MeshInstance3D
-@onready var movement_component: MovementComponent = %MovementComponent
 
 @export var speed: float = 0.01
-var waypoint: Vector3
 
-func _ready():
-	movement_component.speed = speed
+# Behaviors
+var behavior_queue: Array = []
+
+# Mining Stuff
+var regolith : float = 0.0
+var mining_speed: float = 0.3
+
 			
-# TODO: make this into a behavior
 func _process(delta: float) -> void:
-	movement_component.seek_point(delta)
+	if behavior_queue.size() == 0:
+		return
+		
+	if behavior_queue.front().is_finished:
+		behavior_queue.pop_front()
+	else:
+		behavior_queue.front().apply(delta)
 
 func on_mouse_over(pos):
 	Outliner.add_outline(mesh)
@@ -23,11 +32,18 @@ func on_mouse_over(pos):
 func on_mouse_exit(pos):
 	Outliner.remove_outline(mesh)
 	
+func begin_move_to(position: Vector3):
+	behavior_queue.clear()
+	behavior_queue.push_back(SeekBehavior.new(self, position))
+	
+func prioritize_behavior(behavior: Behavior):
+	behavior_queue.push_front(behavior)
+	
 func on_right_click(result: Dictionary):
-	movement_component.set_waypoint(result.position)
+	begin_move_to(result.position)
 
 func select():
-	menu.visible = true
+	menu.enable(self)
 	
 func deselect():
-	menu.visible = false
+	menu.disable()

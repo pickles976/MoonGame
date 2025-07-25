@@ -1,18 +1,39 @@
-[gd_scene load_steps=12 format=3 uid="uid://jco6j8ak1k7n"]
+[gd_scene load_steps=18 format=3 uid="uid://jco6j8ak1k7n"]
 
 [ext_resource type="Script" uid="uid://ddkk1tfk437gy" path="res://camera_controller.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b07yp60f8v1up" path="res://ground.gd" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://fur548jesvn2" path="res://Materials/lunar_rock_1/albedo.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://dbddmtr4rk0y8" path="res://raycaster.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bxiy5hq2cga72" path="res://LandingCraft/landing_craft.tscn" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://b5qxahho6vd5k" path="res://Materials/lunar_rock_1/ao.png" id="4_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://ci5eik1g0psvp" path="res://Rover/rover.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://y6eas4gqmsc8" path="res://Materials/lunar_rock_1/height.png" id="5_w48qg"]
 [ext_resource type="PackedScene" uid="uid://dy5s0tmn4efpj" path="res://LandingCraft/lander_menu.tscn" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dacg4b4ucssx5" path="res://Materials/lunar_rock_1/normal.png" id="6_vivmo"]
 [ext_resource type="PackedScene" uid="uid://brhvqqd4n5sdn" path="res://Rover/rover_menu.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://dlvh5jymd3y2h" path="res://spawner_system.gd" id="8_5vw27"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
 orientation = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
+albedo_texture = ExtResource("3_dg77c")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.3
+normal_enabled = true
+normal_scale = 0.95
+normal_texture = ExtResource("6_vivmo")
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("4_ycdy4")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("5_w48qg")
+uv1_scale = Vector3(2, 2, 2)
+grow_amount = -0.776
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
-size = Vector3(2.00232, 0.605225, 2.01666)
+size = Vector3(9.64769, 0.605225, 4.2457)
 
 [sub_resource type="QuadMesh" id="QuadMesh_7mycd"]
 center_offset = Vector3(0, 0.1, 0)
@@ -37,7 +58,7 @@ current = true
 size = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.540901, 0.841086, 0, -0.841086, 0.540901, 0, 13.3783, 0)
+transform = Transform3D(0.855889, -0.187668, 0.481908, -0.432531, 0.251054, 0.865961, -0.283498, -0.949607, 0.133702, -3.56173, 6.12079, 5.11185)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.734086, -0.281708, 0.617866, -0.587303, 0.193357, 0.785932, -0.340872, -0.939816, -0.0235073, 12.686, 22.2179, 2.40534)
@@ -47,15 +68,16 @@ light_energy = 0.2
 script = ExtResource("2_1bvp3")
 
 [node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = SubResource("QuadMesh_lquwl")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2cqfq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0115356, -0.299927, -0.0160217)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.167589, -0.299927, -0.139972)
 shape = SubResource("BoxShape3D_ig7tw")
 
 [node name="HighlightSquare" type="MeshInstance3D" parent="Ground"]
@@ -71,6 +93,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.50918, -3)
 
 [node name="Rover" parent="." instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367825, 0)
+
+[node name="SpawnerSystem" type="Node" parent="." node_paths=PackedStringArray("rover_menu")]
+unique_name_in_owner = true
+script = ExtResource("8_5vw27")
+rover = ExtResource("5_lquwl")
+rover_menu = NodePath("../CanvasUI/RoverMenu")
 
 [node name="CanvasUI" type="CanvasLayer" parent="."]
 

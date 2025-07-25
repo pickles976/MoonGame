@@ -1,0 +1,32 @@
+extends Node
+
+var INITIAL_RESOURCES_PER_GRID_SQUARE: float = 1.0
+
+var WIDTH: int = 100
+
+# Initialize a map with regolith
+var regolith_map: Dictionary
+
+func _ready():
+	_init_regolith_map()
+
+func _init_regolith_map():
+	for i in range(-WIDTH, WIDTH):
+		for j in range(-WIDTH, WIDTH):
+			regolith_map[Vector3(i, 0.0, j)] = INITIAL_RESOURCES_PER_GRID_SQUARE
+		
+func get_regolith_at_position(position: Vector3) -> float:
+	position = Pathfinding.snap(position)
+	if regolith_map.has(position):
+		return regolith_map[position]
+	return 0.0
+	
+func mine(position: Vector3, rate: float) -> float:
+	position = Pathfinding.snap(position)
+	if not regolith_map.has(position):
+		return 0.0
+		
+	var regolith_mined_this_tick = min(rate, regolith_map[position])
+	regolith_map[position] -= regolith_mined_this_tick
+	
+	return regolith_mined_this_tick

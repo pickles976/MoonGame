@@ -16,14 +16,36 @@
 	- [x] basic pathfinding
 	- [x] pathfind around landing craft
 	- [x] max recursion depth
+	
+- [x] ground PBR texture
+- [x] disable raycasting on UI interaction
 
-- [ ] UI interaction
-	- [ ] spawn new rover
-	- [ ] move rover to waypoint
-- [ ] behaviors
-- [ ] behavior queue
-	- [ ] move to point
-	- [ ] collect resources (wander randomly)
-	- [ ] cancel
-- [ ] UI
-- [ ] command pattern for input-handling
+- [x] UI interaction
+	- [x] spawn new rover
+	- [x] move rover to waypoint
+- [ ] add resources and resource UI
+	- [x] initialize resource grid (tons of regolith per square)
+- [x] add mining behavior for rovers (wander until grid with regolith is found, then mine)
+- [x] behaviors
+	- [x] look for grid
+	- [x] move to grid
+	- [x] mine
+- [ ] show total amount of mined regolith in tons on UI
+
+- [ ] show kW
+	- [ ] lander should produce 10kW
+	- [ ] rover should consume 5kW when active
+	- [ ] dispatch signals to show consumption rates
+	- [ ] if power is over-consumed, throttle efficiency rates
+		
+
+- [ ] add resource-processor
+	- [ ] go to resource processor
+- [ ] add solar panels	
+
+- [ ] regolith to element conversion rates (O2 45%, Si 21%, Metals 25%)
+- [ ] solar panel energy production
+- [ ] rover power requirements
+- [ ] regolith processor efficiency
+
+- [ ] take a break and watch the tutemic video

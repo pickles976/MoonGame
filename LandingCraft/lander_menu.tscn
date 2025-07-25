@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dy5s0tmn4efpj"]
+[gd_scene load_steps=2 format=3 uid="uid://dy5s0tmn4efpj"]
+
+[ext_resource type="Script" uid="uid://desb6p56dm0ok" path="res://LandingCraft/lander_menu.gd" id="1_64awn"]
 
 [node name="LanderMenu" type="MarginContainer"]
 anchors_preset = 8
@@ -12,17 +14,15 @@ offset_right = 575.0
 offset_bottom = 325.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_64awn")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="CreateRoverButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Poop"
-
-[node name="Fart" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Fart"
+mouse_default_cursor_shape = 2
+text = "Create New Rover"
