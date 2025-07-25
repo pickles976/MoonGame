@@ -12,11 +12,14 @@
 	- [x] move with right click
 - [x] refactor selection and stuff
 
-- [ ] pathfinding
+- [x] pathfinding
 	- [x] basic pathfinding
 	- [x] pathfind around landing craft
-	- [ ] max recursion depth
+	- [x] max recursion depth
 
+- [ ] UI interaction
+	- [ ] spawn new rover
+	- [ ] move rover to waypoint
 - [ ] behaviors
 - [ ] behavior queue
 	- [ ] move to point
