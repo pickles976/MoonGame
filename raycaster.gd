@@ -23,40 +23,23 @@ func _physics_process(delta):
 		if last_hovered: last_hovered.on_mouse_exit(Vector3(0,0,0))
 		return
 		
-	# Check for component
+	# Get node
 	var parent = result.collider.get_parent()
-	var selection_component = parent.get("selection_component")
 		
 	if Input.is_action_just_pressed("RightClick"):
 		SelectionHandler.handle_right_click(result)
 	elif Input.is_action_just_pressed("LeftClick"):
-		match selection_component:
-			null: SelectionHandler.deselect()
-			_: SelectionHandler.set_selected(selection_component)
+		match parent.is_selectable:
+			false: SelectionHandler.deselect()
+			true: SelectionHandler.set_selected(parent)
 	else:
-		print(result.collider.get_parent())
-		match selection_component:
-			null: _handle_hover_unselectable(result)
-			_: _handle_hover_selectable(selection_component, result)
+		_handle_hover(parent, result)
 	
-func _handle_hover_selectable(selection_component: SelectionComponent, result: Dictionary):
+func _handle_hover(node: Node3D, result: Dictionary):
 	
-	if selection_component != last_hovered: # New item hovered over
+	if node != last_hovered: # New item hovered over
 		if last_hovered:
 			last_hovered.on_mouse_exit(result.position)
-		last_hovered = selection_component
-	selection_component.on_mouse_over(result.position)
+		last_hovered = node
+	node.on_mouse_over(result.position)
 	
-func _handle_hover_unselectable(result: Dictionary):
-	
-	var parent = result.collider.get_parent()
-
-	if not (parent.has_method("on_mouse_over") and parent.has_method("on_mouse_exit")):
-		return
-	
-	if parent != last_hovered: # New item hovered over
-		if last_hovered:
-			last_hovered.on_mouse_exit(result.position)
-		last_hovered = parent
-	parent.on_mouse_over(result.position)
-		

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci5eik1g0psvp"]
+[gd_scene load_steps=5 format=3 uid="uid://ci5eik1g0psvp"]
 
 [ext_resource type="Script" uid="uid://cwog70jjr1oo0" path="res://Rover/rover.gd" id="1_qttos"]
-[ext_resource type="PackedScene" uid="uid://bipqhkiq2elii" path="res://Components/selection_component.tscn" id="2_tefkf"]
 [ext_resource type="ArrayMesh" uid="uid://ckgm8tfxiqyp6" path="res://Rover/model.res" id="2_wv8fb"]
 [ext_resource type="PackedScene" uid="uid://cjhguhd43b728" path="res://Components/movement_component.tscn" id="4_5vwos"]
 
@@ -19,9 +18,6 @@ mesh = ExtResource("2_wv8fb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_il8ej")
-
-[node name="SelectionComponent" parent="." instance=ExtResource("2_tefkf")]
-unique_name_in_owner = true
 
 [node name="MovementComponent" parent="." instance=ExtResource("4_5vwos")]
 unique_name_in_owner = true

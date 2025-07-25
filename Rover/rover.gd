@@ -1,24 +1,33 @@
 extends Node3D
 
+@export var is_highlightable: bool = true
+@export var is_selectable: bool = true
+
 @onready var menu : Container = %RoverMenu
-@onready var selection_component: SelectionComponent = %SelectionComponent
+@onready var mesh : MeshInstance3D = %MeshInstance3D
 @onready var movement_component: MovementComponent = %MovementComponent
 
+@export var speed: float = 0.01
 var waypoint: Vector3
-var speed: float = 0.01
 
 func _ready():
-	selection_component.on_select_callback = func ():
-			menu.visible = true
-			
-	selection_component.on_deselect_callback = func ():
-			menu.visible = false
+	movement_component.speed = speed
 			
 # TODO: make this into a behavior
 func _process(delta: float) -> void:
 	movement_component.seek_point(delta)
 
-func move_to(pos: Vector3):
-	waypoint = pos
-	waypoint.y = position.y
+func on_mouse_over(pos):
+	Outliner.add_outline(mesh)
 	
+func on_mouse_exit(pos):
+	Outliner.remove_outline(mesh)
+	
+func on_right_click(result: Dictionary):
+	movement_component.set_waypoint(result.position)
+
+func select():
+	menu.visible = true
+	
+func deselect():
+	menu.visible = false

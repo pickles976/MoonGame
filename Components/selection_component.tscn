@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bipqhkiq2elii"]
-
-[ext_resource type="Script" uid="uid://bnv1h3lqa22h2" path="res://Components/selection_component.gd" id="1_mhdfs"]
-
-[node name="SelectionComponent" type="Node"]
-script = ExtResource("1_mhdfs")

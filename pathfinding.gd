@@ -1,5 +1,6 @@
 extends Node
 
+const MAX_DEPTH: int = 100;
 var grid_size: float = 1.0
 
 var obstacle_dict: Dictionary = {}
@@ -33,7 +34,14 @@ func generate_path(start: Vector3, end: Vector3) -> Array[Vector3]:
 	closed_list = {}
 	
 	var node
+	var depth = 0
 	while open_list.size() > 0:
+		
+		depth += 1
+		if (depth > MAX_DEPTH):
+			print("Path not found!")
+			return []
+		
 		# Get best node and add to closed list
 		open_list.sort_custom(func (a,b): return a.f < b.f)
 		node = open_list.pop_front()
@@ -52,11 +60,7 @@ func generate_path(start: Vector3, end: Vector3) -> Array[Vector3]:
 		]
 		
 		for direction in directions:
-			
-			print(direction)
-			print(obstacle_dict)
-			print(obstacle_dict.get(direction))
-			
+
 			if closed_list.has(direction) or obstacle_dict.has(direction):
 				continue
 

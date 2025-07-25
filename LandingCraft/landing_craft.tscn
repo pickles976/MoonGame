@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://bxiy5hq2cga72"]
+[gd_scene load_steps=7 format=4 uid="uid://bxiy5hq2cga72"]
 
 [ext_resource type="Script" uid="uid://lr1l4cion3xe" path="res://LandingCraft/landing_craft.gd" id="1_cewp5"]
-[ext_resource type="Script" uid="uid://bnv1h3lqa22h2" path="res://Components/selection_component.gd" id="2_npwdk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
 
@@ -79,7 +78,3 @@ shape = SubResource("BoxShape3D_h2yge")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984288, 0)
 mesh = SubResource("ArrayMesh_cewp5")
-
-[node name="SelectionComponent" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_npwdk")

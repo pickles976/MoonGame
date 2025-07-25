@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var is_highlightable: bool = true
+@export var is_selectable: bool = false
 
 func on_mouse_over(pos):
 	$HighlightSquare.position = pos.snappedf(Pathfinding.grid_size)
